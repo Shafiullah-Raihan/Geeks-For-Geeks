@@ -1,0 +1,47 @@
+///https://www.geeksforgeeks.org/problems/sum-of-digit-is-pallindrome-or-not2751/1
+
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+// User function Template for C++
+😎
+class Solution {
+  public:
+    int isDigitSumPalindrome(int n) {
+        int sum =0;
+        while(n>0){
+            sum += n%10;
+            n = n/10;
+        }
+        string s = to_string(sum);
+        bool ok = true;
+        int len = s.size();
+        for(int i =0;i<len/2;i++){
+            if(s[i] != s[len-1 -i]){
+                ok = false;
+                break;
+            }
+        }
+        return  (ok)?1:0;
+    }
+};
+😎
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N;
+        cin >> N;
+        Solution ob;
+        cout << ob.isDigitSumPalindrome(N) << "\n";
+    
+cout << "~" << "\n";
+}
+}
+
+// } Driver Code Ends

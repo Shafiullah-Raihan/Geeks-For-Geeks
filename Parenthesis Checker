@@ -1,0 +1,52 @@
+///https://www.geeksforgeeks.org/problems/parenthesis-checker2744/1?page=1&sortBy=submissions
+
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+😎
+class Solution {
+  public:
+    bool isParenthesisBalanced(string& s) {
+       
+        vector<char> stack; 
+        for (auto& ch : s) {
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push_back(ch); 
+            } else {
+                if (!stack.empty() && 
+                    ((stack.back() == '(' && ch == ')') || 
+                     (stack.back() == '{' && ch == '}') || 
+                     (stack.back() == '[' && ch == ']'))) {
+                    stack.pop_back(); 
+                } else {
+                    return false; 
+                }
+            }
+        }
+        return stack.empty();
+    }
+};
+😎
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    string a;
+    cin >> t;
+    while (t--) {
+        cin >> a;
+        Solution obj;
+        if (obj.isParenthesisBalanced(a))
+            cout << "true" << endl;
+        else
+            cout << "false" << endl;
+
+        cout << "~"
+             << "\n";
+    }
+}
+// } Driver Code Ends

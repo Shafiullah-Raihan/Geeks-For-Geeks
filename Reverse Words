@@ -1,0 +1,58 @@
+///https://www.geeksforgeeks.org/problems/reverse-words-in-a-given-string5459/1?page=1&company=Samsung&sortBy=submissions
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+😎
+class Solution {
+  public:
+    // Function to reverse words in a given string.
+    string reverseWords(string &s) {
+        stringstream ss(s);
+        stack<string>st;
+        string word;
+       string str= "";
+       while(ss>>word)
+       {
+           st.push(word);
+       }
+       while(!st.empty())
+       {
+           str+= st.top();
+           str+= ' ';
+           st.pop();
+           
+       }
+       if(str.back() == ' '){
+           str.pop_back();
+       }
+       return str;
+    }
+};
+😎
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;     // Read the number of test cases
+    cin.ignore(); // Consume the newline character after reading the integer
+
+    while (t--) {
+        string s;
+        getline(cin, s); // Read the string input
+
+        string str = s.substr(1, s.size() - 2); // Remove surrounding quotes
+        Solution obj;                       // Create an object of the Solution class
+        string ans = obj.reverseWords(str); // Reverse the words in the string
+        cout << '"';                        // Print opening quote
+        cout << ans;                        // Print the result
+        cout << '"';                        // Print closing quote
+        cout << endl;                       // Print a newline
+    }
+    return 0; // Return 0 to indicate successful execution
+}
+
+// } Driver Code Ends

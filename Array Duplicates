@@ -1,0 +1,70 @@
+///https://www.geeksforgeeks.org/problems/find-duplicates-in-an-array/1?page=1&sortBy=submissions
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+😎
+// } Driver Code Ends
+class Solution {
+  public:
+    vector<int> findDuplicates(vector<int>& arr) {
+        vector<int>ans;
+        unordered_map<int,int>mp;
+        
+        for(auto u:arr)
+        {
+            mp[u]++;
+        }
+        for(auto u:mp)
+        {
+            if(u.second>1){
+          
+                    ans.push_back(u.first);
+                
+                
+            }
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
+😎
+//{ Driver Code Starts.
+
+int main() {
+    int t; // Number of test cases
+    cin >> t;
+    cin.ignore(); // Ignore the newline after the integer input
+    while (t--) {
+        vector<int> a;
+        string input;
+
+        // Input format: first number n followed by the array elements
+        getline(cin, input);
+        stringstream ss(input);
+        int num;
+        while (ss >> num)
+            a.push_back(num); // Read the array elements from input string
+
+        Solution obj;
+        vector<int> result = obj.findDuplicates(a);
+
+        // Print the result in the required format
+        if (result.empty()) {
+            cout << "[]"; // Print empty brackets if no duplicates are found
+        } else {
+            for (int i = 0; i < result.size(); i++) {
+                if (i != 0)
+                    cout << " ";
+                cout << result[i];
+            }
+        }
+        cout << endl;
+        cout << "~" << endl;
+    }
+
+    return 0;
+}
+
+// } Driver Code Ends

@@ -1,0 +1,55 @@
+///https://www.geeksforgeeks.org/problems/longest-distinct-characters-in-string5848/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+//{ Driver Code Starts
+// Initial Template for C++
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+😎
+class Solution {
+  public:
+    int longestSubstrDistinctChars(string& s) {
+       
+    unordered_set<char> charSet; 
+    int res = 0;                 
+    int i = 0, j = 0;           
+    int n = s.length();          
+
+    while (j < n) {
+        if (charSet.find(s[j]) == charSet.end()) { 
+            charSet.insert(s[j]);
+            res = max(res, j - i + 1); 
+            j++; 
+        } else {
+            charSet.erase(s[i]);
+            i++; 
+        }
+    }
+    return res; 
+
+    }
+};
+😎
+
+//{ Driver Code Starts.
+
+int main() {
+
+    int t;
+    cin >> t;
+    while (t--) {
+
+        Solution obj;
+        string s;
+        cin >> s;
+        cout << obj.longestSubstrDistinctChars(s) << endl;
+        cout << "~"
+             << "\n";
+    }
+
+    return 0;
+}
+
+// } Driver Code Ends

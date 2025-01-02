@@ -1,0 +1,71 @@
+///https://www.geeksforgeeks.org/problems/koko-eating-bananas/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+😎
+class Solution {
+  public:
+  bool isValid(int k,int h,vector<int>& piles)
+    {
+        long long cnt=0;
+        for(int i=0;i<piles.size();i++)
+        {
+            if(piles[i]%k){
+                cnt++;
+            }
+            cnt+=piles[i]/k;
+        }
+        return h>=cnt;
+    }
+    int kokoEat(vector<int>& piles, int h) {
+        int low=1,high=1e9,mid,ans = INT_MAX;
+        while(low<=high)
+
+        {
+            mid = (low + high)/2;
+            if(isValid(mid,h,piles))
+            {
+                high= mid-1;
+                ans = min(ans,mid);
+            }
+            else{
+                low = mid+1;
+            }
+        }
+        return ans;
+    }
+};
+
+
+😎
+
+//{ Driver Code Starts.
+int main() {
+    string ts;
+    getline(cin, ts);
+    int t = stoi(ts);
+    while (t--) {
+
+        vector<int> arr;
+        string input;
+        getline(cin, input);
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
+        }
+        string ks;
+        getline(cin, ks);
+        int k = stoi(ks);
+        Solution ob;
+
+        cout << ob.kokoEat(arr, k);
+        cout << "\n";
+    }
+    return 0;
+}
+// } Driver Code Ends

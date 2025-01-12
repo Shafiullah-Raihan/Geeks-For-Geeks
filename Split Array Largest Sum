@@ -1,0 +1,82 @@
+///https://www.geeksforgeeks.org/problems/split-array-largest-sum--141634/0
+
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+😎
+
+#define ll long long 
+class Solution {
+  public:
+  bool isValid(ll limit, int arr[], int N, int k) {
+        ll sum = 0;
+        int cnt = 1; 
+        for (int i = 0; i < N; i++) {
+            if (arr[i] > limit) {
+                return false; 
+            }
+            if (sum + arr[i] > limit) {
+                cnt++;        
+                sum = arr[i];  
+            } else {
+                sum += arr[i];
+            }
+        }
+        return cnt <= k; 
+    }
+
+   
+    int splitArray(int arr[], int N, int k) {
+        ll low = *max_element(arr, arr + N);   
+        ll high = accumulate(arr, arr + N, 0LL);
+        ll ans = LLONG_MAX;
+
+        
+        while (low <= high) {
+            ll mid = (low + high) / 2;
+            if (isValid(mid, arr, N, k)) {
+                ans = min(ans, mid); 
+                high = mid - 1;     
+            } else {
+                low = mid + 1;      
+            }
+        }
+        return ans; 
+    }
+};
+
+
+
+😎
+
+
+
+
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N, K;
+        
+        cin>>N>>K;
+        int arr[N];
+        
+        for(int i=0 ; i<N ; i++)
+            cin>>arr[i];
+
+        Solution ob;
+        cout<<ob.splitArray(arr,N,K);
+        cout<<"\n";
+    
+cout << "~" << "\n";
+}
+    return 0;
+}
+// } Driver Code Ends

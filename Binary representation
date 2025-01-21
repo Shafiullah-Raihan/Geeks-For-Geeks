@@ -1,0 +1,46 @@
+///https://www.geeksforgeeks.org/problems/binary-representation5003/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+
+//{ Driver Code Starts
+#include<bits/stdc++.h> 
+using namespace std; 
+
+// } Driver Code Ends
+😎
+class Solution
+{
+public:
+    string getBinaryRep(int N) {
+    string s = "";
+    for (int i = 29; i >= 0; i--) {
+        if (N & (1 << i)) {
+            s += '1';
+        } else {
+            s += '0';
+        }
+    }
+    return s;
+}
+
+};
+😎
+
+//{ Driver Code Starts.
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int N;
+        cin >> N;
+       
+        Solution ob;
+        string ans = ob.getBinaryRep(N);
+        cout << ans << endl;
+    
+cout << "~" << "\n";
+}
+    return 0;
+}
+// } Driver Code Ends

@@ -1,0 +1,65 @@
+///https://www.geeksforgeeks.org/problems/prefix-to-postfix-conversion/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+//{ Driver Code Starts
+// Initial Template for C++
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function Template for C++
+😎
+
+class Solution {
+  public:
+    bool isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
+    }
+    string preToPost(string prefix) {
+        stack<string> st;
+        int n = prefix.size();
+        for(int i=n-1;i>=0;i--)
+        {
+            char c = prefix[i];
+            if(isOperator(c))
+            {
+                string op1 = st.top();st.pop();
+                string op2 = st.top();st.pop();
+                st.push(op1+op2+c);
+            }
+            else if(isalnum(c))
+            {
+                st.push(string(1,c));
+                
+            }
+        }
+        return st.top();
+    }
+};
+😎
+//{ Driver Code Starts.
+
+int main() {
+    int t = 1;
+    cin >> t;
+
+    // freopen ("output_gfg.txt", "w", stdout);
+
+    while (t--) {
+        // Input
+        string prefix;
+        cin >> prefix;
+
+        Solution obj;
+        cout << obj.preToPost(prefix) << endl;
+
+        // cout << "~\n";
+    
+cout << "~" << "\n";
+}
+    // fclose(stdout);
+
+    return 0;
+}
+
+// } Driver Code Ends

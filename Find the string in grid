@@ -1,0 +1,91 @@
+///https://www.geeksforgeeks.org/problems/find-the-string-in-grid0111/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+😎
+class Solution {
+public:
+	bool isValid(int X,int Y, int sizeX, int sizeY){
+	    return (X >=0 && X < sizeX && Y >=0 && Y < sizeY);
+	}
+	
+	bool findWordInDirection(vector<vector<char>>grid, int n, int m, string word, int index, int x, int y, int dirX, int dirY){
+	    if(index == word.size()){
+	        return true;
+	    }
+	    
+	    if(isValid(x,y,n,m) && word[index] == grid[x][y]){
+	           return findWordInDirection(grid,n,m,word,index+1,x+dirX,y+dirY,dirX,dirY);
+	    }
+	    
+	    return false;
+	}
+	
+	vector<vector<int>>searchWord(vector<vector<char>>grid, string word){
+	    // Code here
+	    vector<vector<int>> ans;
+	    
+	    int x[] = {1,-1,0,0,1,1,-1,-1};
+	    int y[] = {0, 0,1,-1,1,-1,1,-1};
+	    
+	    int n = grid.size();
+	    int m = grid[0].size();
+	    for(int i=0;i<n;i++){
+	        for(int j=0;j<m;j++){
+	            if(grid[i][j] == word[0]){
+	                for(int k=0;k<8;k++){
+	                    if(findWordInDirection(grid,n,m,word,0,i,j,x[k],y[k])){
+            	                ans.push_back({i,j});
+            	                break;
+            	       }
+	                }
+	            }
+	                
+            }
+	        
+	    }
+	    
+	    return ans;
+	    
+	}
+};
+😎
+//{ Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n, m;
+		cin >> n >> m;
+		vector<vector<char>>grid(n, vector<char>(m,'x'));
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < m; j++)
+				cin >> grid[i][j];
+		}
+		string word;
+		cin >> word;
+		Solution obj;
+		vector<vector<int>>ans = obj.searchWord(grid, word);
+		if(ans.size() == 0)
+		{
+		    cout<<"-1\n";
+		}
+		else
+		{
+		    for(auto i: ans){
+			for(auto j: i)
+				cout << j << " ";
+			cout << "\n";
+		    }
+		}
+		
+		
+	
+cout << "~" << "\n";
+}
+	return 0;
+}
+// } Driver Code Ends
